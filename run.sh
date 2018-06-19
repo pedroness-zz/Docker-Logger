@@ -4,7 +4,8 @@
 #ADD CONTAINER NAMES TO BELOW LINE TO ADD THEM TO DOCKER LOGGER
 
 docker rm -f docker-logger-container
-
+rm -r $(pwd)/app/json
+mkdir $(pwd)/app/json
 CONTAINERS=()
 
 DOCKERCONTAINEROUTPUT=$(docker container ls --format "{{.Names}}")
