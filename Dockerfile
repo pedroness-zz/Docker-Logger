@@ -17,5 +17,8 @@ RUN cd Docker-Logger-Front-End-master && npm install && ng build --prod
 RUN cp -R /home/node/app/Docker-Logger-Front-End-master/dist/docker-logger/* /home/node/app
 RUN rm -r /home/node/app/fswatch-1.11.3
 RUN rm master.zip
+RUN npm install socket.io
 RUN rm fswatch-1.11.3.tar.gz
 RUN rm -r  /home/node/app/Docker-Logger-Front-End-master
+RUN chmod +x ./monitor.js
+CMD node ./monitor.js
