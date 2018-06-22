@@ -9,16 +9,17 @@ RUN apt-get update
 RUN apt-get install build-essential
 RUN apt-get install unzip
 RUN apt-get -y install rsync
+RUN apt-get -y install nano
 RUN tar -xvzf fswatch-1.11.3.tar.gz
 RUN cd /home/node/app/fswatch-1.11.3 && ./configure && make && make install && ldconfig
-RUN wget https://github.com/pedroness/Docker-Logger-Front-End/archive/master.zip
-RUN unzip master
-RUN cd Docker-Logger-Front-End-master && npm install && ng build --prod
-RUN cp -R /home/node/app/Docker-Logger-Front-End-master/dist/docker-logger/* /home/node/app
 RUN rm -r /home/node/app/fswatch-1.11.3
-RUN rm master.zip
 RUN npm install socket.io
 RUN rm fswatch-1.11.3.tar.gz
-RUN rm -r  /home/node/app/Docker-Logger-Front-End-master
-RUN chmod +x ./monitor.js
-CMD node ./monitor.js
+RUN echo "cd /home/node" >> /home/node/update.sh
+RUN echo "wget https://github.com/pedroness/Docker-Logger-Front-End/archive/master.zip" >> /home/node/update.sh
+RUN echo "unzip master.zip" >> /home/node/update.sh
+RUN echo "cd Docker-Logger-Front-End-master && npm install && ng build --prod" >> /home/node/update.sh
+RUN echo "rsync -ru -v /home/node/Docker-Logger-Front-End-master/dist/docker-logger/. /home/node/app" >> /home/node/update.sh
+RUN echo "rm -r /home/node/Docker-Logger-Front-End-master && rm -r /home/node/master.zip" >> /home/node/update.sh
+RUN chmod +x /home/node/update.sh && /home/node/update.sh && chmod +x /home/node/app/monitor.js  
+CMD node /home/node/app/monitor.js
