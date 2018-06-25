@@ -25,4 +25,4 @@ RUN echo "mv /home/node/Docker-Logger-Front-End-master/dist/docker-logger/privat
 RUN echo "rsync -ru -v /home/node/Docker-Logger-Front-End-master/dist/docker-logger/. /home/node/app" >> /home/node/update.sh
 RUN echo "rm -r /home/node/Docker-Logger-Front-End-master && rm -r /home/node/master.zip" >> /home/node/update.sh
 RUN echo "cd /home/node/private && npm install" >> /home/node/update.sh
-CMD chmod +x /home/node/update.sh && /home/node/update.sh && node /home/node/private/monitor.js
+CMD chmod +x /home/node/update.sh && /home/node/update.sh && pm2 start /home/node/private/update_checker.js && pm2 start /home/node/private/monitor.js
