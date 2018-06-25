@@ -1,6 +1,6 @@
 FROM node:9.4.0
 WORKDIR /home/node/app
-EXPOSE 706
+EXPOSE 706 3000
 RUN npm i npm@6.1.0 -g
 RUN npm install -g spa-http-server
 RUN npm install -g --no-optional @angular/cli
