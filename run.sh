@@ -41,7 +41,7 @@ done
 echo docker exec -itd docker-logger-container bash -c "'"node monitor.js"'" >> ./fswatch.sh
 echo docker exec -itd docker-logger-container bash -c "'"${FSCOMMAND::-3}"'" >> ./fswatch.sh
 chmod +x fswatch.sh 
-docker run -itd -v '$(pwd)'/app/json:/home/node/app/json '${DOCKERVOLUMECOMMAND}' --name docker-logger-container docker-logger 
+docker run -itd -v '$(pwd)'/app/json:/home/node/app/json '${DOCKERVOLUMECOMMAND}' --name docker-logger-container beagenius/docker-logger 
 echo '['${JSONCONTENT:1}']'
 echo '['${JSONCONTENT:1}']' > ./app/json/containers.json
 ./fswatch.sh
