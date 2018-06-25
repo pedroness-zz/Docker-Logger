@@ -1,1 +1,0 @@
-docker run -itd -v /home/pedro/Dropbox1/workspace/code/waxd-development-composition/compositions/docker-logger/app/json:/home/node/app/json  --name docker-logger-container docker-logger pm2 start /home/node/private/update_checker.js && pm2 start /home/node/private/monitor.js && http-server -d false --push-state --cors -p 706 
