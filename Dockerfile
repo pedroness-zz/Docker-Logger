@@ -24,7 +24,8 @@ RUN echo "cd /home/node/Docker-Logger-Front-End-master/dist/docker-logger/" >> /
 RUN echo "mv /home/node/Docker-Logger-Front-End-master/dist/docker-logger/private /home/node" >> /home/node/update.sh
 RUN echo "rsync -ru -v /home/node/Docker-Logger-Front-End-master/dist/docker-logger/. /home/node/app" >> /home/node/update.sh
 RUN echo "rm -r /home/node/Docker-Logger-Front-End-master && rm -r /home/node/master.zip" >> /home/node/update.sh
-RUN echo "cd /home/node/private && npm install" >> /home/node/update.sh && chmod +x /home/node/update.sh && /home/node/update.sh 
+RUN echo "cd /home/node/private && npm install" >> /home/node/update.sh 
+RUN chmod +x /home/node/update.sh && /home/node/update.sh 
 RUN echo "pm2 start /home/node/private/update_checker.js" >> /home/node/server.sh
 RUN echo "pm2 start /home/node/private/monitor.js" >> /home/node/server.sh
 RUN echo "http-server -d false --push-state --cors -p 706"  >> /home/node/server.sh && chmod +x /home/node/server.sh
